@@ -1,5 +1,6 @@
 package com.hostile.view
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,22 +14,44 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
+import com.nasdin.hostile1.data.local.ReportEntity
+import com.nasdin.hostile1.model.ReportData
 import com.nasdin.hostile1.ui.components.RectButton
+import com.nasdin.hostile1.viewmodel.KeplerViewModel
+import com.nasdin.hostile1.viewmodel.ReportViewModel
+import java.util.Date
 
 @Composable
-fun RatingView(navController: NavController, imageUri: String?) {
+fun RatingView(navController: NavController, keplerViewModel: KeplerViewModel, imageUri: String?) {
+    val context = LocalContext.current
+    val location by keplerViewModel.location.collectAsState()
+
+    LaunchedEffect(Unit) {
+        keplerViewModel.fetchLocation(context)
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -36,16 +59,22 @@ fun RatingView(navController: NavController, imageUri: String?) {
         contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-//            Image(
-//                painter = rememberAsyncImagePainter(model = imageUri),
-//                contentDescription = null,
-//                modifier = Modifier.height(200.dp).fillMaxWidth()
-//            )
-
+            AsyncImage(
+                model = imageUri,
+                contentDescription = "Captured Image",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
+                    .clip(RoundedCornerShape(12.dp)),
+                contentScale = ContentScale.Crop
+            )
+            Spacer(modifier = Modifier.height(16.dp))
             Box(
                 modifier = Modifier
                     .background(
@@ -69,26 +98,33 @@ fun RatingView(navController: NavController, imageUri: String?) {
 
             Row(horizontalArrangement = Arrangement.Center) {
                 (1..5).forEach { rating ->
-//                    Button(
-//                        onClick = { navController.navigate("RewardView") },
-//                        modifier = Modifier.padding(4.dp)
-//                    ) {
-//                        Text("$rating")
-//                    }
-                    RectButton(text = "$rating",
-                        onClick = { navController.navigate("RewardView") },
+                    RectButton(
+                        text = "$rating",
+                        onClick = {
+                            keplerViewModel.fetchLocation(context)
+                            keplerViewModel.saveReport(
+                                ReportEntity(
+                                    imageUri = imageUri,
+                                    rating = rating,
+                                    latitude = location?.latitude ?: 35.70,
+                                    longitude = location?.longitude ?: 139.77
+                                )
+                            )
+                            navController.navigate("RewardView")
+                        },
                         backgroundColor = Color(0xFF4CAF50)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                 }
             }
         }
-        Button(onClick = { navController.navigate("homeView") },
+        // Home button
+        RectButton(text = "", icon = Icons.Default.Home,
+            onClick = { navController.navigate("homeView") },
             modifier = Modifier
-                .padding(16.dp)
-                .align(Alignment.BottomEnd))
-        {
-            Text("Home")
-        }
+                .align(Alignment.BottomEnd)
+                .padding(16.dp),
+            backgroundColor = Color(0xFF4CAF50)
+        )
     }
 }

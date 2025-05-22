@@ -1,6 +1,6 @@
 package com.nasdin.hostile1.model
 
-data class KeplerData(
+data class StressData(
     val latitude: Double,
     val longitude: Double,
     val timestamp: String,

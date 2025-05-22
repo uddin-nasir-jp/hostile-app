@@ -1,6 +1,7 @@
 package com.nasdin.hostile1.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,9 +14,11 @@ import com.hostile.view.RatingView
 import com.hostile.view.ReportMoreView
 import com.hostile.view.ReportView
 import com.hostile.view.RewardView
+import com.nasdin.hostile1.viewmodel.KeplerViewModel
+import com.nasdin.hostile1.viewmodel.ReportViewModel
 
 @Composable
-fun AppNavigator() {
+fun AppNavigator(keplerViewModel: KeplerViewModel) {
     val navController = rememberNavController()
 
     NavHost(navController, startDestination = "homeView") {
@@ -60,7 +63,7 @@ fun AppNavigator() {
             })
         ) { backStackEntry ->
             val imageUri = backStackEntry.arguments?.getString("imageUri")
-            RatingView(navController = navController, imageUri = imageUri)
+            RatingView(navController = navController, keplerViewModel, imageUri = imageUri)
         }
         composable("rewardView") {
             RewardView(navController)
@@ -69,7 +72,7 @@ fun AppNavigator() {
             ReportMoreView(navController)
         }
         composable("mapView") {
-            KeplerMapView(navController)
+            KeplerMapView(navController, keplerViewModel)
         }
     }
 }

@@ -1,0 +1,170 @@
+[
+  {
+    "latitude": 41.4175153420161,
+    "longitude": 2.1735303012906,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.82,
+    "State": "STRESSED"
+  },
+  {
+    "latitude": 41.4269476743514,
+    "longitude": 2.16633901800768,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.339,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.4137701586013,
+    "longitude": 2.21944008849021,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.475,
+    "State": "SLIGHTLY STRESSED"
+  },
+  {
+    "latitude": 41.4135115703284,
+    "longitude": 2.09109756581311,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.264,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.4109295041667,
+    "longitude": 2.20315773230484,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.532,
+    "State": "SLIGHTLY STRESSED"
+  },
+  {
+    "latitude": 41.434885276113,
+    "longitude": 2.14978143722777,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.335,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.4185620961641,
+    "longitude": 2.15935157385612,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.46,
+    "State": "SLIGHTLY STRESSED"
+  },
+  {
+    "latitude": 41.4390715149819,
+    "longitude": 2.1598441088705,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.175,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.3923221547279,
+    "longitude": 2.17348622062747,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.723,
+    "State": "STRESSED"
+  },
+  {
+    "latitude": 41.3923450143896,
+    "longitude": 2.12298422786185,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.388,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.384702510742,
+    "longitude": 2.1284534261679,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.855,
+    "State": "STRESSED"
+  },
+  {
+    "latitude": 41.4395567068015,
+    "longitude": 2.17904713531718,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.554,
+    "State": "SLIGHTLY STRESSED"
+  },
+  {
+    "latitude": 41.4485647970247,
+    "longitude": 2.18904505637622,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.368,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.45040790086,
+    "longitude": 2.19423760822719,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.35,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.4251483122161,
+    "longitude": 2.12547763563301,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.445,
+    "State": "SLIGHTLY STRESSED"
+  },
+  {
+    "latitude": 41.3391068941835,
+    "longitude": 2.12828406448727,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.492,
+    "State": "SLIGHTLY STRESSED"
+  },
+  {
+    "latitude": 41.4397531235462,
+    "longitude": 2.17760205705009,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.375,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.4212062466445,
+    "longitude": 2.18453367712239,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.356,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.3908199721478,
+    "longitude": 2.1083625089824,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.279,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.3632746188597,
+    "longitude": 2.13412214409811,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.363,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.4163256745665,
+    "longitude": 2.20668141725684,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.855,
+    "State": "STRESSED"
+  },
+  {
+    "latitude": 41.3848361461225,
+    "longitude": 2.11380724768838,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.159,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.396410134924,
+    "longitude": 2.16998544670122,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.306,
+    "State": "CALM"
+  },
+  {
+    "latitude": 41.4145514336778,
+    "longitude": 2.17758869886175,
+    "timestamp": "2023-01-01T00:00:00",
+    "Combined_Stress": 0.19,
+    "State": "CALM"
+  }
+]

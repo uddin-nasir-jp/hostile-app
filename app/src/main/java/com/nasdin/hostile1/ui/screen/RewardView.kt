@@ -1,6 +1,5 @@
 package com.hostile.view
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -8,12 +7,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.nasdin.hostile1.R
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Report
 import androidx.compose.ui.graphics.Brush
@@ -27,7 +24,7 @@ fun RewardView(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(32.dp)
+            .padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())
     ) {
         // Title at top center
         Text(
@@ -58,16 +55,6 @@ fun RewardView(navController: NavController) {
             )
         }
 
-        // Centered static reward image
-//        Image(
-//            painter = painterResource(id = R.drawable.reward), // Replace with your drawable name
-//            contentDescription = "Reward Image",
-//            contentScale = ContentScale.Fit,
-//            modifier = Modifier
-//                .size(200.dp)
-//                .align(Alignment.Center)
-//        )
-
         Icon(
             imageVector = Icons.Default.EmojiEvents,
             contentDescription = "Reward Icon",
@@ -77,7 +64,7 @@ fun RewardView(navController: NavController) {
             tint = MaterialTheme.colorScheme.primary
         )
 
-        RectButton(text = "OK",
+        RectButton(text = "OK", icon = Icons.Default.Done,
             onClick = { navController.navigate("reportMoreView") },
             backgroundColor = Color(0xFF4CAF50),
             modifier = Modifier
