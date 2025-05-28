@@ -10,6 +10,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
+import com.nasdin.hostile1.Utility.MapUtils.createScaledDotBitmap
+import com.nasdin.hostile1.Utility.MapUtils.getDotColorForStress
 import com.nasdin.hostile1.model.StressData
 import com.nasdin.hostile1.viewmodel.KeplerViewModel
 
@@ -34,30 +36,14 @@ fun StressMap(viewModel: KeplerViewModel) {
                         item: StressData,
                         markerOptions: MarkerOptions
                     ) {
-                        val color = when {
-                            item.Combined_Stress.toString().equals(
-                                "calm",
-                                ignoreCase = true
-                            ) -> BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)
+                        val color = getDotColorForStress(item.State)
+                        val scaledBitmap = createScaledDotBitmap(color, size = 64)
+                        val descriptor = BitmapDescriptorFactory.fromBitmap(scaledBitmap)
 
-                            item.Combined_Stress.toString().equals(
-                                "slightly stressed",
-                                ignoreCase = true
-                            ) -> BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)
-
-                            item.Combined_Stress.toString().equals(
-                                "stressed",
-                                ignoreCase = true
-                            ) -> BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)
-
-                            item.Combined_Stress.toString().equals(
-                                "highly stressed",
-                                ignoreCase = true
-                            ) -> BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
-
-                            else -> BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE) // default/fallback
-                        }
-                        markerOptions.icon(color)
+                        markerOptions
+                            .title(item.title)
+                            .icon(descriptor)
+                            .anchor(0.5f, 0.5f)
                     }
                 }
 

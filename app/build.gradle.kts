@@ -91,6 +91,7 @@ dependencies {
     implementation(libs.maps.compose)
     implementation(libs.play.services.maps)
     implementation(libs.gson)
+    implementation("com.google.maps.android:android-maps-utils:2.2.5")
 
     // Room db
     implementation("androidx.room:room-runtime:2.7.1")

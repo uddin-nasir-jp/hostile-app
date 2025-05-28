@@ -3,17 +3,15 @@ package com.nasdin.hostile1.viewmodel
 import android.app.Application
 import android.content.Context
 import android.location.Location
-import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.application
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.nasdin.hostile1.model.StressData
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.nasdin.hostile1.Utility.LocationUtils
+import com.nasdin.hostile1.Utility.MapUtils
 import com.nasdin.hostile1.data.local.ReportDatabase
 import com.nasdin.hostile1.data.local.ReportEntity
 import com.nasdin.hostile1.data.local.ReportRepository
@@ -53,7 +51,7 @@ class KeplerViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun fetchLocation(context: Context) {
-        LocationUtils.getCurrentLocation(context) { loc ->
+        MapUtils.getCurrentLocation(context) { loc ->
             _location.value = loc
         }
     }
