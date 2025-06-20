@@ -36,6 +36,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
+import com.nasdin.hostile1.Utility.MapUtils
 import com.nasdin.hostile1.data.local.ReportEntity
 import com.nasdin.hostile1.model.ReportData
 import com.nasdin.hostile1.ui.components.RectButton
@@ -47,10 +50,6 @@ import java.util.Date
 fun RatingView(navController: NavController, keplerViewModel: KeplerViewModel, imageUri: String?) {
     val context = LocalContext.current
     val location by keplerViewModel.location.collectAsState()
-
-    LaunchedEffect(Unit) {
-        keplerViewModel.fetchLocation(context)
-    }
 
     Box(
         modifier = Modifier
@@ -101,15 +100,19 @@ fun RatingView(navController: NavController, keplerViewModel: KeplerViewModel, i
                     RectButton(
                         text = "$rating",
                         onClick = {
-                            keplerViewModel.fetchLocation(context)
-                            keplerViewModel.saveReport(
-                                ReportEntity(
-                                    imageUri = imageUri,
-                                    rating = rating,
-                                    latitude = location?.latitude ?: 35.70,
-                                    longitude = location?.longitude ?: 139.77
-                                )
-                            )
+                            //keplerViewModel.fetchLocation(context)
+                            MapUtils.getCurrentLocation(context) { location ->
+                                location?.let {
+                                    keplerViewModel.saveReport(
+                                        ReportEntity(
+                                            imageUri = imageUri,
+                                            rating = rating,
+                                            latitude = it.latitude,
+                                            longitude = it.longitude
+                                        )
+                                    )
+                                }
+                            }
                             navController.navigate("RewardView")
                         },
                         backgroundColor = Color(0xFF4CAF50)

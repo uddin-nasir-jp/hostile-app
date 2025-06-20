@@ -1,7 +1,9 @@
 package com.nasdin.hostile1.Utility
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
+import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -9,7 +11,11 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.location.Location
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsRequest
+import com.google.android.gms.location.Priority
 
 object MapUtils {
     fun getCurrentLocation(context: Context, onLocationResult: (Location?) -> Unit) {
@@ -56,6 +62,38 @@ object MapUtils {
             "stressed" -> 0xFFFFA500.toInt() // Orange
             "highly stressed" -> Color.RED
             else -> Color.GRAY
+        }
+    }
+
+    fun isWithin10Km(currentLat: Double, currentLng: Double, targetLat: Double, targetLng: Double): Boolean {
+        val results = FloatArray(1)
+        Location.distanceBetween(currentLat, currentLng, targetLat, targetLng, results)
+        return results[0] <= 10000 // 10 km in meters
+    }
+
+    fun promptEnableLocation(activity: Activity) {
+        val locationRequest = LocationRequest.create()
+            .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
+
+        val builder = LocationSettingsRequest.Builder()
+            .addLocationRequest(locationRequest)
+            .setAlwaysShow(true) // Important: shows the dialog
+
+        val settingsClient = LocationServices.getSettingsClient(activity)
+        val task = settingsClient.checkLocationSettings(builder.build())
+
+        task.addOnSuccessListener {
+            // All settings are satisfied. Location can be accessed.
+        }
+
+        task.addOnFailureListener { exception ->
+            if (exception is ResolvableApiException) {
+                try {
+                    exception.startResolutionForResult(activity, 1001)
+                } catch (sendEx: IntentSender.SendIntentException) {
+                    // Ignore the error.
+                }
+            }
         }
     }
 }

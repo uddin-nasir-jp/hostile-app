@@ -59,7 +59,7 @@ class KeplerViewModel(application: Application) : AndroidViewModel(application) 
     fun saveReport(report: ReportEntity) {
         viewModelScope.launch {
             repository.insertReport(report)
-            loadReports()
+            //loadReports()
         }
     }
 
